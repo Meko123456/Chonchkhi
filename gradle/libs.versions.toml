@@ -6,7 +6,7 @@ activityCompose = "1.13.0"
 lifecycle = "2.10.0"
 junit = "4.13.2"
 spotless = "7.0.2"
-detekt = "1.23.7"
+detekt = "1.23.8"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
