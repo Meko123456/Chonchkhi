@@ -12,3 +12,8 @@ build/
 # Signing
 *.jks
 *.keystore
+
+# Signing
+keystore.properties
+*.keystore
+*.jks

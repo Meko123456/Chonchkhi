@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
 }
+
+// Optional release signing: drop a keystore.properties (see keystore.properties.example)
+// at the repo root and release builds get signed; without it, debug/CI builds still work.
+val keystoreProps = rootProject.file("keystore.properties")
 
 android {
     namespace = "io.github.meko123456.chonchkhi.app"
@@ -15,10 +21,23 @@ android {
         versionName = "0.1.0"
     }
 
+    signingConfigs {
+        if (keystoreProps.exists()) {
+            create("release") {
+                val props = Properties().apply { keystoreProps.inputStream().use { load(it) } }
+                storeFile = file(props.getProperty("storeFile"))
+                storePassword = props.getProperty("storePassword")
+                keyAlias = props.getProperty("keyAlias")
+                keyPassword = props.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            if (keystoreProps.exists()) signingConfig = signingConfigs.getByName("release")
         }
     }
 
