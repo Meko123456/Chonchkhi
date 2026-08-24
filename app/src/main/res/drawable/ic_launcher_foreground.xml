@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A simple wireframe "skeleton" cube outline. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <group>
+        <path android:strokeColor="#FF38B2AC" android:strokeWidth="5" android:strokeLineJoin="round" android:strokeLineCap="round" android:fillColor="#00000000"
+            android:pathData="M38,42 L54,34 L70,42 L70,64 L54,72 L38,64 Z" />
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="5" android:strokeLineJoin="round" android:strokeLineCap="round" android:fillColor="#00000000"
+            android:pathData="M38,42 L54,50 L70,42 M54,50 L54,72" />
+    </group>
+</vector>
