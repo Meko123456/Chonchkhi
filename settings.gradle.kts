@@ -23,4 +23,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Chonchkhi"
-include(":app", ":core")
+include(":app", ":core", ":feature-home")
