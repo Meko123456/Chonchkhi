@@ -1,7 +1,7 @@
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.android.application)
+    id("chonchkhi.android.application")
     alias(libs.plugins.compose.compiler)
 }
 
@@ -11,12 +11,9 @@ val keystoreProps = rootProject.file("keystore.properties")
 
 android {
     namespace = "io.github.meko123456.chonchkhi.app"
-    compileSdk = 36
 
     defaultConfig {
         applicationId = "io.github.meko123456.chonchkhi"
-        minSdk = 26
-        targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
     }
@@ -39,11 +36,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             if (keystoreProps.exists()) signingConfig = signingConfigs.getByName("release")
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
