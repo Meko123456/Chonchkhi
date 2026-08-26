@@ -6,6 +6,13 @@ Android starter** to skip the boilerplate on your next app.
 Clone it (or use it as a GitHub *template*) and you already have a version-catalog-driven,
 multi-module Compose project with CI, unit tests, and sane defaults wired up.
 
+<p align="center">
+  <img src="docs/screenshot-app.png" width="300" alt="The sample app: a Compose screen in :feature-home rendering text from the :core module" />
+</p>
+
+<p align="center"><em>What you get out of the box: a Compose screen living in <code>:feature-home</code>,
+rendering a string from the <code>:core</code> module — the multi-module wiring already proven.</em></p>
+
 ## What's inside
 
 - 🧱 **Multi-module** layout — an `:app` (Compose application) that depends on a reusable
