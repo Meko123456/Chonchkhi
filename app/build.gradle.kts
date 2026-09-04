@@ -34,6 +34,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            // Unused resources go too. Code shrinking alone leaves the drawables, strings and
+            // layouts that the shrunk code no longer references sitting in the APK.
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             if (keystoreProps.exists()) signingConfig = signingConfigs.getByName("release")
         }
