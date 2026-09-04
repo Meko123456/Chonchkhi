@@ -9,7 +9,10 @@ plugins {
 detekt {
     buildUponDefaultConfig = true
     config.setFrom("$rootDir/config/detekt/detekt.yml")
-    source.setFrom("app/src", "core/src", "feature-home/src")
+    // Every module, not a hand-kept list. The list version silently stopped covering each new
+    // module the moment someone added one, and a linter that quietly skips code is worse than no
+    // linter: the green tick says the code was checked.
+    source.setFrom(subprojects.map { file("${it.projectDir}/src") })
 }
 
 spotless {
