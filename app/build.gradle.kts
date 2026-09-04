@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("chonchkhi.android.application")
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.baselineprofile)
 }
 
 // Optional release signing: drop a keystore.properties (see keystore.properties.example)
@@ -54,4 +55,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     debugImplementation(libs.compose.ui.tooling)
     testImplementation(libs.junit)
+    baselineProfile(project(":baselineprofile"))
 }
