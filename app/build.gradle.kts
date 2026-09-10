@@ -31,6 +31,22 @@ android {
         }
     }
 
+    lint {
+        // Lint every module the app depends on, not just this one: :core and :feature-home have no
+        // lint task of their own in CI, and a project generated from this template would inherit
+        // that gap. With this, one lintDebug run covers the whole graph.
+        checkDependencies = true
+        // A warning nobody reads is not a check: any new lint warning in any module fails the build,
+        // the way a failing test does, so a project generated from this template starts defended.
+        warningsAsErrors = true
+        // Dependabot owns version bumps and opens a PR per bump; lint repeating "a newer version is
+        // available" would turn CI red on every upstream release and bury the real findings.
+        disable += setOf("GradleDependency", "NewerVersionAvailable", "AndroidGradlePluginVersion")
+        // OldTargetApi fires once a platform newer than targetSdk is installed - true on the CI runner
+        // (API 37), not necessarily locally. targetSdk moves fleet-wide with compileSdk.
+        disable += "OldTargetApi"
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true

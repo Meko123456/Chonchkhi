@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- ObsoleteSdkInt says the -v26 qualifier is redundant at minSdk 26. Dropping it is not possible
+         here: this adaptive icon is the only definition of @mipmap/ic_launcher (no density PNG
+         fallbacks), and with the file in plain mipmap-anydpi AAPT2 fails to resolve the manifest's
+         reference ("resource mipmap/ic_launcher not found" from :app:processDebugResources). Keep the
+         folder Android Studio generates and ignore the one warning about it. -->
+    <issue id="ObsoleteSdkInt">
+        <ignore path="src/main/res/mipmap-anydpi-v26" />
+    </issue>
+</lint>
