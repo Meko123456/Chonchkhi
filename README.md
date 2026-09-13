@@ -29,13 +29,13 @@ rendering a string from the <code>:core</code> module — the multi-module wirin
 app/     Compose application (applicationId io.github.meko123456.chonchkhi)
 core/    Android library — pure/business logic, unit-tested (depends-on target)
 gradle/  libs.versions.toml — the single source of dependency versions
-config/  detekt config (optional static analysis)
+config/  detekt config (detekt runs on every build and in CI)
 .github/ CI, dependabot, PR & issue templates
 ```
 
 ## Toolchain
 
-- Gradle 9.3.1 · AGP 9.1.1 · Kotlin 2.3.21 · Compose BOM 2026.06.01
+- Gradle 9.7.1 · AGP 9.1.1 · Kotlin 2.4.10 · Compose BOM 2026.06.01
 - compileSdk 36 · minSdk 26 · Java 17
 
 ## Use it
