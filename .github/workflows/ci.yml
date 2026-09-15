@@ -31,6 +31,14 @@ jobs:
       - name: Build, lint and unit tests
         run: ./gradlew :app:assembleDebug :app:lintDebug :core:testDebugUnitTest --stacktrace
 
+      # Nothing above reaches :baselineprofile. The profile generator is instrumentation code, and
+      # actually generating a profile needs an emulator this workflow does not have — but compiling
+      # and packaging its APK does not, and that is where the rot would show: a renamed screen, a
+      # dropped uiautomator or macrobenchmark API, a broken targetProjectPath. nonMinifiedRelease is
+      # the variant generateBaselineProfile drives, and assembling it needs no :app tasks at all.
+      - name: Compile the baseline profile module
+        run: ./gradlew :baselineprofile:assembleNonMinifiedRelease --stacktrace
+
       # Debug builds never run R8, so shrinking breakage stayed invisible until release day.
       # This is also the only job that proves the committed baseline profile still packages.
       - name: Release build (R8 + resource shrinking)
