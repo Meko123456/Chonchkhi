@@ -42,8 +42,11 @@ android {
         // Dependabot owns version bumps and opens a PR per bump; lint repeating "a newer version is
         // available" would turn CI red on every upstream release and bury the real findings.
         disable += setOf("GradleDependency", "NewerVersionAvailable", "AndroidGradlePluginVersion")
-        // OldTargetApi fires once a platform newer than targetSdk is installed - true on the CI runner
-        // (API 37), not necessarily locally. targetSdk moves fleet-wide with compileSdk.
+        // OldTargetApi fires whenever a platform newer than targetSdk is available, which is now
+        // always: compileSdk is 37 and targetSdk is deliberately still 36. compileSdk only widens
+        // the API surface available at compile time; targetSdk changes how the app behaves at
+        // runtime, and that is a decision to take on its own commit rather than as a side effect of
+        // a dependency needing a newer compile target.
         disable += "OldTargetApi"
     }
 
