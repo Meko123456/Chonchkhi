@@ -13,12 +13,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         extensions.configure(ApplicationExtension::class.java) {
             // 37 because AndroidX now requires it: Compose BOM 2026.09.00 and core-ktx 1.19.0
             // ship AARs whose metadata declares a minimum compileSdk of 37, and a project on 36
-            // fails at checkDebugAarMetadata before compiling a line. Note targetSdk stays where it
-            // is — this only widens what is available at compile time.
+            // fails at checkDebugAarMetadata before compiling a line.
             compileSdk = 37
             defaultConfig {
                 minSdk = 26
-                targetSdk = 36
+                targetSdk = 37
             }
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_17

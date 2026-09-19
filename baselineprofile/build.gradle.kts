@@ -17,7 +17,7 @@ android {
         // without root. API 28 is the floor for profile installation, 33 for generating on a
         // stock retail phone.
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 37
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
