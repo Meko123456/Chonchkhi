@@ -28,8 +28,12 @@ jobs:
       - name: detekt static analysis
         run: ./gradlew detekt --stacktrace
 
+      # `testDebugUnitTest`, not `:core:testDebugUnitTest`. :core is the only module with tests
+      # today, so naming it looked equivalent - but it silently excludes :app and :feature-home,
+      # which means the first test written in either would never run. Confirmed: a deliberately
+      # failing test in :app passes `:core:testDebugUnitTest` and fails this.
       - name: Build, lint and unit tests
-        run: ./gradlew :app:assembleDebug :app:lintDebug :core:testDebugUnitTest --stacktrace
+        run: ./gradlew :app:assembleDebug :app:lintDebug testDebugUnitTest --stacktrace
 
       # Nothing above reaches :baselineprofile. The profile generator is instrumentation code, and
       # actually generating a profile needs an emulator this workflow does not have — but compiling
@@ -41,8 +45,13 @@ jobs:
 
       # Debug builds never run R8, so shrinking breakage stayed invisible until release day.
       # This is also the only job that proves the committed baseline profile still packages.
+      #
+      # lintVitalRelease is the release variant's lint, and the check AGP itself runs when you
+      # build a real release; every other app in the fleet gates on it and this one did not.
+      # Honest note: no case was found where it fires and the lintDebug above stays quiet, so it
+      # is defence in depth against release-only sources and manifest merges, not a known hole.
       - name: Release build (R8 + resource shrinking)
-        run: ./gradlew :app:assembleRelease --stacktrace
+        run: ./gradlew :app:assembleRelease :app:lintVitalRelease --stacktrace
 
       - name: Upload lint report
         if: failure()
