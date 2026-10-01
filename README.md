@@ -19,7 +19,11 @@ rendering a string from the <code>:core</code> module — the multi-module wirin
   `:core` library module, so business logic stays out of the UI.
 - 📚 **Version catalog** (`gradle/libs.versions.toml`) — one place for every dependency and plugin.
 - 🎨 **Jetpack Compose + Material 3** — dynamic color, light/dark, edge-to-edge, adaptive icon.
-- ✅ **CI** (GitHub Actions) — assemble + Android lint + unit tests on every push/PR.
+- ✅ **CI** (GitHub Actions) on every push/PR — Spotless and detekt, assemble + Android lint +
+  unit tests, the baseline-profile module, the R8 release build with release lint, and
+  **release-launches**: the minified APK installed on an emulator and opened, failing if it
+  crashes. Building the release only proves R8 ran; three apps made from this kind of setup
+  had release builds that died on launch with every other check green.
 - 🧪 **Unit tests** wired in the `:core` module (JVM, fast).
 - 🤖 **Dependabot**, PR + issue templates, `.editorconfig` — repo hygiene out of the box.
 
