@@ -39,8 +39,8 @@ config/  detekt config (detekt runs on every build and in CI)
 
 ## Toolchain
 
-- Gradle 9.8.0 · AGP 9.4.1 · Kotlin 2.4.20 · Compose BOM 2026.09.00
-- compileSdk 37 · targetSdk 37 · minSdk 26 · Java 17
+- Gradle 9.9.2 · AGP 9.5.2 · Kotlin 2.4.21 · Compose BOM 2026.11.01
+- compileSdk 37.1 · targetSdk 37 · minSdk 26 · Java 17
 
 ## Use it
 

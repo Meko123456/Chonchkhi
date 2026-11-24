@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "io.github.meko123456.chonchkhi.baselineprofile"
     compileSdk = 37
+    compileSdkMinor = 1
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
